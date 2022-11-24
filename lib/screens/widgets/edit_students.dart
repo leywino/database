@@ -1,30 +1,56 @@
 import 'package:database/db/functions/db_functions.dart';
-import 'package:database/db/model/data_model.dart';
 import 'package:database/screens/students_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:database/db/model/data_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class AddStudentsWidget extends StatefulWidget {
-  AddStudentsWidget({super.key});
+class EditStudents extends StatefulWidget {
+  EditStudents({super.key, required this.index, required this.data});
+
+  int index;
+  StudentModel data;
 
   @override
-  State<AddStudentsWidget> createState() => _AddStudentsWidgetState();
+  State<EditStudents> createState() => _EditStudentsState();
 }
 
-class _AddStudentsWidgetState extends State<AddStudentsWidget> {
+class _EditStudentsState extends State<EditStudents> {
   String? path;
+  TextEditingController? _nameController;
+  TextEditingController? _ageController;
+  TextEditingController? _placeController;
+  TextEditingController? _phoneController;
 
-  final _nameController = TextEditingController();
+  @override
+  void initState() {
+    _nameController = TextEditingController(text: widget.data.name);
 
-  final _ageController = TextEditingController();
+    _ageController = TextEditingController(text: widget.data.age);
 
-  final _placeController = TextEditingController();
+    _placeController = TextEditingController(text: widget.data.place);
 
-  final _phoneController = TextEditingController();
+    _phoneController = TextEditingController(text: widget.data.phone);
+
+    path = widget.data.image;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 50, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Edit Students'),
+            ],
+          ),
+        ),
+      ),
       body: Container(
         child: SafeArea(
           child: Padding(
@@ -35,9 +61,11 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    const Text(
-                      'Add Students',
-                      style: TextStyle(fontSize: 30),
+                    CircleAvatar(
+                      radius: 90,
+                      backgroundImage: FileImage(
+                        File(widget.data.image),
+                      ),
                     ),
                     SizedBox(
                       height: 15,
@@ -57,7 +85,7 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
                               color: Color.fromARGB(255, 119, 118, 118),
                               width: 3.0),
                         ),
-                        hintText: 'Name',
+                        hintText: widget.data.name,
                       ),
                     ),
                     SizedBox(
@@ -79,7 +107,7 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
                               color: Color.fromARGB(255, 119, 118, 118),
                               width: 3.0),
                         ),
-                        hintText: 'Age',
+                        hintText: widget.data.age,
                       ),
                     ),
                     SizedBox(
@@ -100,7 +128,7 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
                               color: Color.fromARGB(255, 119, 118, 118),
                               width: 3.0),
                         ),
-                        hintText: 'Place',
+                        hintText: widget.data.place,
                       ),
                     ),
                     SizedBox(
@@ -121,7 +149,7 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
                               color: Color.fromARGB(255, 119, 118, 118),
                               width: 3.0),
                         ),
-                        hintText: 'Phone Number',
+                        hintText: widget.data.phone,
                       ),
                     ),
                     SizedBox(
@@ -143,10 +171,11 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
                     ),
                     ElevatedButton.icon(
                       onPressed: () {
-                        AddButton(context);
+                        Edit(widget.index);
+                        Navigator.pop(context);
                       },
-                      label: Text('Add'),
-                      icon: Icon(Icons.add),
+                      label: Text('Save'),
+                      icon: Icon(Icons.save),
                     )
                   ],
                 ),
@@ -158,55 +187,23 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
     );
   }
 
-  AddButton(BuildContext ctx) {
-    final _name = _nameController.text.trim();
-    final _age = _ageController.text.trim();
-    final _place = _placeController.text.trim();
-    final _phone = _phoneController.text.trim();
+  Future<void> Edit(int index) async {
+    final _name = _nameController!.text.trim();
+    final _age = _ageController!.text.trim();
+    final _place = _placeController!.text.trim();
+    final _phone = _phoneController!.text.trim();
     final _key = DateTime.now().toString();
-    final _image = path;
-    var field;
-
-    ErrorMessage() {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.red[300],
-          content: Row(
-            children: [
-              Icon(Icons.error),
-              Text('$field is empty'),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (_name.isEmpty && _age.isEmpty && _place.isEmpty && _phone.isEmpty) {
-      field = 'Every field';
-      ErrorMessage();
-    } else if (_name.isEmpty) {
-      field = 'Name';
-      ErrorMessage();
-    } else if (_age.isEmpty) {
-      field = 'Age';
-      ErrorMessage();
-    } else if (_place.isEmpty) {
-      field = 'Place';
-      ErrorMessage();
-    } else if (_phone.isEmpty) {
-      field = 'Phone number';
-      ErrorMessage();
-    } else {
-      final _student = StudentModel(
+    final image = path!;
+    final _student = StudentModel(
         name: _name,
         age: _age,
         place: _place,
         phone: _phone,
         key: _key,
-        image: _image!,
-      );
-      addStudent(_student);
-    }
+        image: image);
+    final studentDB = await Hive.openBox<StudentModel>('student_db');
+    studentDB.putAt(index, _student);
+    getAllStudents();
   }
 
   getImage() async {
@@ -221,32 +218,4 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
       });
     }
   }
-}
-
-alertDelete(BuildContext ctx, index) {
-  showDialog(
-      context: ctx,
-      builder: (ctx1) {
-        return AlertDialog(
-          // title: Text('Delete'),
-          content: Text('Do you want to delete this?'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx, 'Cancel'),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                if (index != null) {
-                  deleteStudent(index);
-                  Navigator.pop(ctx);
-                } else {
-                  print('student id is null unable to delete');
-                }
-              },
-              child: const Text('Delete'),
-            ),
-          ],
-        );
-      });
 }
