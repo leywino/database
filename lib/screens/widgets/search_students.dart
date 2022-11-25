@@ -56,6 +56,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       itemBuilder: (context, index) {
                         File imageFile = File(displayStudent[index].image);
                         return ListTile(
+                          // onTap: () async {
+                          //   goto(index);
+                          // },
                           leading: CircleAvatar(
                             backgroundImage: FileImage(imageFile),
                             radius: 20,
@@ -82,13 +85,14 @@ class _SearchScreenState extends State<SearchScreen> {
     final stud = studentBoxList.getAt(index);
     if (stud == null) {
       return const Text('null');
-    }
-    return Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => ShowDetails(
-          data: stud,
+    } else {
+      return Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => ShowDetails(
+            data: stud,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
