@@ -7,6 +7,7 @@ class HomeNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ignore: avoid_unnecessary_containers
       body: Container(
         child: AddStudentsWidget(),
       ),

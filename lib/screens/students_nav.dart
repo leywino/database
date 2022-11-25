@@ -3,6 +3,7 @@ import 'package:database/db/model/data_model.dart';
 import 'package:database/screens/student_details.dart';
 import 'package:database/screens/widgets/add_students.dart';
 import 'package:database/screens/widgets/edit_students.dart';
+import 'package:database/screens/widgets/search_students.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -22,7 +23,13 @@ class StudentsNav extends StatelessWidget {
               children: [
                 Text('Student List'),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) => SearchScreen(),
+                      ),
+                    );
+                  },
                   icon: Icon(Icons.search),
                 ),
               ],

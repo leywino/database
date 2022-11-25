@@ -181,7 +181,11 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
       );
     }
 
-    if (_name.isEmpty && _age.isEmpty && _place.isEmpty && _phone.isEmpty) {
+    if (_name.isEmpty &&
+        _age.isEmpty &&
+        _place.isEmpty &&
+        _phone.isEmpty &&
+        _image!.isEmpty) {
       field = 'Every field';
       ErrorMessage();
     } else if (_name.isEmpty) {
@@ -196,6 +200,9 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
     } else if (_phone.isEmpty) {
       field = 'Phone number';
       ErrorMessage();
+    } else if (_image == null) {
+      field = 'Image';
+      ErrorMessage();
     } else {
       final _student = StudentModel(
         name: _name,
@@ -203,9 +210,19 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
         place: _place,
         phone: _phone,
         key: _key,
-        image: _image!,
+        image: _image,
       );
       addStudent(_student);
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => StudentsNav(),
+        ),
+      );
+
+      _nameController.clear();
+      _ageController.clear();
+      _placeController.clear();
+      _phoneController.clear();
     }
   }
 
