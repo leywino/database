@@ -12,8 +12,8 @@ class ScreenHome extends StatefulWidget {
 class _ScreenHomeState extends State<ScreenHome> {
   int _currentSelectedIndex = 0;
   final _pages = [
-    HomeNav(),
-    StudentsNav(),
+    const HomeNav(),
+    const StudentsNav(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,12 @@ class _ScreenHomeState extends State<ScreenHome> {
               _currentSelectedIndex = newIndex;
             });
           },
-          items: [
-            const BottomNavigationBarItem(
+          items:const [
+            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'home',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'students',
             ),

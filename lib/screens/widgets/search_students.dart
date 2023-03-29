@@ -51,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             Expanded(
-              child: (displayStudent.length != 0)
+              child: (displayStudent.isNotEmpty)
                   ? ListView.separated(
                       itemBuilder: (context, index) {
                         File imageFile = File(displayStudent[index].image);
@@ -86,6 +86,7 @@ class _SearchScreenState extends State<SearchScreen> {
     if (stud == null) {
       return const Text('null');
     } else {
+      // ignore: use_build_context_synchronously
       return Navigator.of(context).push(
         MaterialPageRoute(
           builder: (ctx) => ShowDetails(

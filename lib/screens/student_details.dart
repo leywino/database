@@ -1,13 +1,12 @@
-import 'package:database/db/model/data_model.dart';
 import 'package:database/screens/widgets/details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'dart:io';
 
+// ignore: must_be_immutable
 class ShowDetails extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   var data;
+  // ignore: prefer_typing_uninitialized_variables
   var student;
 
   ShowDetails({super.key, this.data});
@@ -15,7 +14,7 @@ class ShowDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text("Student Details"),

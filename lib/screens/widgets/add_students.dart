@@ -1,3 +1,10 @@
+// ignore: duplicate_ignore
+// ignore: duplicate_ignore
+// ignore: duplicate_ignore
+// ignore: duplicate_ignore
+// ignore: duplicate_ignore
+// ignore_for_file: non_constant_identifier_names, duplicate_ignore
+
 import 'package:database/db/functions/db_functions.dart';
 import 'package:database/db/model/data_model.dart';
 import 'package:database/screens/students_nav.dart';
@@ -5,12 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddStudentsWidget extends StatefulWidget {
-  AddStudentsWidget({super.key});
+  const AddStudentsWidget({super.key});
 
   @override
   State<AddStudentsWidget> createState() => _AddStudentsWidgetState();
 }
 
+// ignore: duplicate_ignore, duplicate_ignore
 class _AddStudentsWidgetState extends State<AddStudentsWidget> {
   String? path;
 
@@ -25,131 +33,129 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    const Text(
-                      'Add Students',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.abc_rounded),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 119, 118, 118),
-                              width: 3.0),
-                        ),
-                        hintText: 'Name',
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 60),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  const Text(
+                    'Add Students',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.abc_rounded),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
                       ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    // ignore: prefer_const_constructors
-                    TextField(
-                      controller: _ageController,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.numbers),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 119, 118, 118),
-                              width: 3.0),
-                        ),
-                        hintText: 'Age',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 119, 118, 118),
+                            width: 3.0),
                       ),
+                      hintText: 'Name',
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    TextField(
-                      controller: _placeController,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.location_pin),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 119, 118, 118),
-                              width: 3.0),
-                        ),
-                        hintText: 'Place',
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  // ignore: prefer_const_constructors
+                  TextField(
+                    controller: _ageController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.numbers),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
                       ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    TextField(
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 119, 118, 118),
-                              width: 3.0),
-                        ),
-                        hintText: 'Phone Number',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 119, 118, 118),
+                            width: 3.0),
                       ),
+                      hintText: 'Age',
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        getImage();
-                      },
-                      label: Text('+'),
-                      icon: Icon(Icons.photo),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.grey),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextField(
+                    controller: _placeController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.location_pin),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 119, 118, 118),
+                            width: 3.0),
+                      ),
+                      hintText: 'Place',
                     ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextField(
+                    controller: _phoneController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.phone),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0), width: 3.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 119, 118, 118),
+                            width: 3.0),
+                      ),
+                      hintText: 'Phone Number',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      getImage();
+                    },
+                    label: const Text('+'),
+                    icon: const Icon(Icons.photo),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.grey),
+                    ),
+                  ),
 
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        AddButton(context);
-                      },
-                      label: Text('Add'),
-                      icon: Icon(Icons.add),
-                    )
-                  ],
-                ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      AddButton(context);
+                    },
+                    label: const Text('Add'),
+                    icon: const Icon(Icons.add),
+                  )
+                ],
               ),
             ),
           ),
@@ -158,22 +164,24 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   AddButton(BuildContext ctx) {
-    final _name = _nameController.text.trim();
-    final _age = _ageController.text.trim();
-    final _place = _placeController.text.trim();
-    final _phone = _phoneController.text.trim();
-    final _key = DateTime.now().toString();
-    final _image = path;
-    var field;
+    final name = _nameController.text.trim();
+    final age = _ageController.text.trim();
+    final place = _placeController.text.trim();
+    final phone = _phoneController.text.trim();
+    final key = DateTime.now().toString();
+    final image = path;
+    String? field;
 
+    // ignore: non_constant_identifier_names
     ErrorMessage() {
       ScaffoldMessenger.of(ctx).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red[300],
           content: Row(
             children: [
-              Icon(Icons.error),
+              const Icon(Icons.error),
               Text('$field is empty'),
             ],
           ),
@@ -181,41 +189,41 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
       );
     }
 
-    if (_name.isEmpty &&
-        _age.isEmpty &&
-        _place.isEmpty &&
-        _phone.isEmpty &&
-        _image!.isEmpty) {
+    if (name.isEmpty &&
+        age.isEmpty &&
+        place.isEmpty &&
+        phone.isEmpty &&
+        image!.isEmpty) {
       field = 'Every field';
       ErrorMessage();
-    } else if (_name.isEmpty) {
+    } else if (name.isEmpty) {
       field = 'Name';
       ErrorMessage();
-    } else if (_age.isEmpty) {
+    } else if (age.isEmpty) {
       field = 'Age';
       ErrorMessage();
-    } else if (_place.isEmpty) {
+    } else if (place.isEmpty) {
       field = 'Place';
       ErrorMessage();
-    } else if (_phone.isEmpty) {
+    } else if (phone.isEmpty) {
       field = 'Phone number';
       ErrorMessage();
-    } else if (_image == null) {
+    } else if (image == null) {
       field = 'Image';
       ErrorMessage();
     } else {
-      final _student = StudentModel(
-        name: _name,
-        age: _age,
-        place: _place,
-        phone: _phone,
-        key: _key,
-        image: _image,
+      final student = StudentModel(
+        name: name,
+        age: age,
+        place: place,
+        phone: phone,
+        key: key,
+        image: image,
       );
-      addStudent(_student);
+      addStudent(student);
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (ctx) => StudentsNav(),
+          builder: (ctx) => const StudentsNav(),
         ),
       );
 
@@ -227,14 +235,13 @@ class _AddStudentsWidgetState extends State<AddStudentsWidget> {
   }
 
   getImage() async {
-    var path;
     final PickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (PickedFile == null) {
       return;
     } else {
       setState(() {
-        this.path = PickedFile.path;
+        path = PickedFile.path;
       });
     }
   }
@@ -246,7 +253,7 @@ alertDelete(BuildContext ctx, index) {
       builder: (ctx1) {
         return AlertDialog(
           // title: Text('Delete'),
-          content: Text('Do you want to delete this?'),
+          content: const Text('Do you want to delete this?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, 'Cancel'),
@@ -258,7 +265,6 @@ alertDelete(BuildContext ctx, index) {
                   deleteStudent(index);
                   Navigator.pop(ctx);
                 } else {
-                  print('student id is null unable to delete');
                 }
               },
               child: const Text('Delete'),

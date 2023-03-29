@@ -21,16 +21,16 @@ class StudentsNav extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Student List'),
+                const Text('Student List'),
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (ctx) => SearchScreen(),
+                        builder: (ctx) => const SearchScreen(),
                       ),
                     );
                   },
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                 ),
               ],
             ),
@@ -61,13 +61,13 @@ class StudentsNav extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
+                        // ignore: unnecessary_null_comparison
                         if (data.key != null) {
                           alertDelete(ctx, index);
                         } else {
-                          print('No key found.');
                         }
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete,
                         color: Colors.red,
                       ),
@@ -82,7 +82,7 @@ class StudentsNav extends StatelessWidget {
                           ),
                         );
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.edit,
                         color: Colors.red,
                       ),

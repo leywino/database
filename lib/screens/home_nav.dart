@@ -9,7 +9,7 @@ class HomeNav extends StatelessWidget {
     return Scaffold(
       // ignore: avoid_unnecessary_containers
       body: Container(
-        child: AddStudentsWidget(),
+        child: const AddStudentsWidget(),
       ),
     );
   }
